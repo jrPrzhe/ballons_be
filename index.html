@@ -397,10 +397,10 @@
         orderList.push({
             'label': product.name,
             'amount': (product.price * kursUSD * 100).toFixed(0)
-        });
-    });
+        })
+    })
 
-    // console.log(orderList);
+    console.log(orderList);
     document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4)
     const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
     let method = "sendInvoice"
@@ -409,7 +409,7 @@
         'title': "NFT MARKET BILLING SYSTEM",
         'description': 'Этот заказ покупки товраа',
         'payload': "order_id=G3645",
-        'provider_token': '1744374395:TEST:b6a7450dd95cffa7fdc5',
+        'provider_token':"1744374395:TEST:b6a7450dd95cffa7fdc5",
         'currency': 'RUB',
         'max_tip_amount': 1000*100,
         'prices': orderList,
