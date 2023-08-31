@@ -451,7 +451,7 @@
 
 const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
     let method =  "sendMessage"
-    axios.post('https://api.telegram.org/bot${BotToken}/${method}',{
+    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`,{
         'chat_id' : 440543986,
         'text': 'salom' 
     })
