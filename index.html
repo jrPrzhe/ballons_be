@@ -402,14 +402,14 @@
 
     console.log(orderList);
     document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4)
-    const BotToken = '5802900431:AAGEk-4mI9SizOIAkZJMW-MLVG1aicpPH_c'
+    const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
     let method = "sendInvoice"
     axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
         'chat_id': telegramData.user.id,
-        'title': "NFT MARKET BILLING SYSTEM",
+        'title': 'NFT MARKET BILLING SYSTEM',
         'description': 'Этот заказ покупки товраа',
         'payload': "order_id=G3645",
-        'provider_token':"1744374395:TEST:a67b9b90f2c19f4a6f44",
+        'provider_token':'1744374395:TEST:b6a7450dd95cffa7fdc5',
         'currency': 'RUB',
         'max_tip_amount': 1000*100,
         'prices': orderList,
