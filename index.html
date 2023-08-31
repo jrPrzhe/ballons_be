@@ -401,53 +401,54 @@
     })
 
     console.log(orderList);
-    document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4)
-    const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
-    let method = "sendInvoice"
-    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
-        'chat_id':440543986,
-         title: 'InvoiceTitle',
-        'description': 'Этот заказ покупки товраа',
-        'payload': "order_id=G3645",
-        'provider_token':'1744374395:TEST:b6a7450dd95cffa7fdc5',
-        'currency': 'RUB',
-        'max_tip_amount': 1000*100,
-        'prices': orderList,
-        'suggested_tip_amounts':[
-            1*100, 5*100, 50*100, 100*100,
-        ],
-        'photo_url': "https://joxi.ru/r898E7ntDaX3Nm",
-        'photo_width': 735,
-        'photo_height': 490,
-        'need_name': true,
-        'need_phone_number': true,
-        'need_email': true,
-        'need_shipping_address': true,
-        'is_flexible': true,
-        'reply_markup':{
-            'inline_keyboard':[
-                [{
-                    'text': "Оплатить свой заказ",
-                    'pay': true
-                }],
-                [{
-                    'text': "Вернуться к каталогу",
-                    'wev_app': {
-                        'url': 'https://jrprzhe.github.io/ballons_be/'
-                    }
-                }]
-            ]
-        },
+document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4);
+const BotToken = 'YOUR_BOT_TOKEN'; // Замените на ваш токен бота
+const method = "sendInvoice";
 
+const requestData = {
+    chat_id: telegramData.user.id,
+    title: 'NFT MARKET BILLING SYSTEM',
+    description: 'Этот заказ покупки товара',
+    payload: "order_id=G3645",
+    provider_token: 'YOUR_PROVIDER_TOKEN', // Замените на ваш токен провайдера
+    currency: 'RUB',
+    max_tip_amount: 1000 * 100,
+    prices: orderList,
+    suggested_tip_amounts: [1 * 100, 5 * 100, 50 * 100, 100 * 100],
+    photo_url: "https://joxi.ru/r898E7ntDaX3Nm",
+    photo_width: 735,
+    photo_height: 490,
+    need_name: true,
+    need_phone_number: true,
+    need_email: true,
+    need_shipping_address: true,
+    is_flexible: true,
+    reply_markup: {
+        inline_keyboard: [
+            [{
+                text: "Оплатить свой заказ",
+                pay: true
+            }],
+            [{
+                text: "Вернуться к каталогу",
+                web_app: {
+                    url: 'https://jrprzhe.github.io/ballons_be/'
+                }
+            }]
+        ]
+    }
+};
 
+axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, requestData)
+    .then(response => {
+        console.log('Ответ от Telegram API:', response.data);
+        // Добавьте здесь ваш код для обработки успешного ответа
     })
-    .then(function (response) {
-        if (response.data.result) telegram.close();
-    })
-    .catch(function (error) {
-        document.querySelector("#logbox").innerText = JSON.stringify(error, null, 4)
-        console.log(error);
+    .catch(error => {
+        console.error('Ошибка при отправке запроса:', error);
+        // Добавьте здесь ваш код для обработки ошибки
     });
+
 //    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
 //        'chat_id':telegramData.user.id,
 //        'title': "NFT MARKET BILLING SYSTEM",
