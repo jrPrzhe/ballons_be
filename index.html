@@ -416,6 +416,9 @@
         'suggested_tip_amounts':[
             1*100, 5*100, 50*100, 100*100,
         ],
+        'photo_url': "https://joxi.ru/r898E7ntDaX3Nm",
+        'photo_width': 735,
+        'photo_height': 490,
         'need_name': true,
         'need_phone_number': true,
         'need_email': true,
@@ -445,7 +448,49 @@
         document.querySelector("#logbox").innerText = JSON.stringify(error, null, 4)
         console.log(error);
     });
-});
+//    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
+//        'chat_id':telegramData.user.id,
+//        'title': "NFT MARKET BILLING SYSTEM",
+//        'description': 'Этот заказ покупки товраа',
+//        'payload': "order_id=G3645",
+//        'provider_token': '1744374395:TEST:b6a7450dd95cffa7fdc5',
+//        'currency': 'RUB',
+//        'max_tip_amount': 1000*100,
+//        'prices': [
+//            {
+//                'label':"Product 1",
+//                'amount': 1500*100
+//            },
+//        ],
+//        'suggested_tip_amounts':[
+//            1*100, 5*100, 50*100, 100*100,
+//        ],
+//        'photo_url': "https://joxi.ru/r898E7ntDaX3Nm",
+//        'photo_width': 735,
+//        'photo_height': 490,
+//        'need_name': true,
+//        'need_phone_number': true,
+//        'need_email': true,
+//        'need_shipping_address': true,
+//        'is_flexible': true,
+//        'reply_markup':{
+//            'inline_keyboard':[
+//                [{
+//                    'text': "Оплатить свой заказ",
+//                    'pay': true
+//                }],
+//                [{
+//                    'text': "Вернуться к каталогу",
+//                    'wev_app': {
+//                        'url': 'https://jrprzhe.github.io/ballons_be/'
+//                    }
+//                }]
+//            ]
+//        },
+//
+//
+//    })
+//});
 
 
 //onst BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
@@ -459,7 +504,8 @@
 //   })
 //   .catch(function(error){
 //       console.log(error);
-//   });
+//  
+ });
     </script>
 </body>
 </html>
