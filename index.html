@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -182,7 +182,7 @@
         }
         const themeParams = telegram.themeParams
         const mainButton = telegram.MainButton;
-        mainButton.setText('Pay ' + (totalSum * kursUSD).toFixed(2) + ' USD.');
+        mainButton.setText('ОПЛАТИТЬ ' + (totalSum * kursUSD).toFixed(2) + ' РУБ.');
         
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -376,7 +376,7 @@
             } else {
                 mainButton.show();
                 mainButton.setParams({
-                    'text': 'оплатить ' + (totalSum * kursUSD).toFixed(2) + ' РУБ.',
+                    'text': 'ОПЛАТИТЬ ' + (totalSum * kursUSD).toFixed(2) + ' РУБ.',
                     'color': "#2ECC71",
                     'text_color': "#F7F9F9"
                 })
@@ -410,7 +410,7 @@
         'title': "NFT MARKET BILLING SYSTEM",
         'description': 'Этот заказ покупки товраа',
         'payload': "order_id=G3645",
-        'provider_token': '1744374395:TEST:a67b9b90f2c19f4a6f44',
+        'provider_token': '1744374395:TEST:b6a7450dd95cffa7fdc5',
         'currency': 'USD',
         'max_tip_amount': 1000*100,
         'prices': orderList,
@@ -421,6 +421,22 @@
         'need_phone_number': true,
         'need_email': true,
         'need_shipping_address': true,
+        'is_flexible': true,
+        'reply_markup':{
+            'inline_keyboard':[
+                [{
+                    'text': "Оплатить свой заказ",
+                    'pay': true
+                }],
+                [{
+                    'text': "Вернуться к каталогу",
+                    'wev_app': {
+                        'url': 'https://jrprzhe.github.io/ballons_be/'
+                    }
+                }]
+            ]
+        },
+
 
     })
     .then(function (response) {
@@ -431,6 +447,20 @@
         console.log(error);
     });
 });
+
+
+const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
+    let method =  "sendMessage"
+    axios.post('https://api.telegram.org/bot${BotToken}/${method}',{
+        'chat_id' : 440543986,
+        'text': 'salom' 
+    })
+    .then(function(response){
+        console.log(response)
+    })
+    .catch(function(error){
+        console.log(error);
+    });
     </script>
 </body>
 </html>
