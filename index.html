@@ -400,18 +400,17 @@
         });
     });
 
-    console.log(orderList);
-    document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4);
-    
-    const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY';
-    let method = "sendInvoice";
+    // console.log(orderList);
+    document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4)
+    const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
+    let method = "sendInvoice"
     axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
         'chat_id':telegramData.user.id ,
         'title': "NFT MARKET BILLING SYSTEM",
         'description': 'Этот заказ покупки товраа',
         'payload': "order_id=G3645",
         'provider_token': '1744374395:TEST:b6a7450dd95cffa7fdc5',
-        'currency': 'USD',
+        'currency': 'RUB',
         'max_tip_amount': 1000*100,
         'prices': orderList,
         'suggested_tip_amounts':[
@@ -449,18 +448,18 @@
 });
 
 
-const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
-    let method =  "sendMessage"
-    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`,{
-        'chat_id' : 440543986,
-        'text': 'salom' 
-    })
-    .then(function(response){
-        console.log(response)
-    })
-    .catch(function(error){
-        console.log(error);
-    });
+//onst BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
+//   let method =  "sendMessage"
+//   axios.post(`https://api.telegram.org/bot${BotToken}/${method}`,{
+//       'chat_id' : 440543986,
+//       'text': 'salom' 
+//   })
+//   .then(function(response){
+//       console.log(response)
+//   })
+//   .catch(function(error){
+//       console.log(error);
+//   });
     </script>
 </body>
 </html>
