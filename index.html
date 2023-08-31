@@ -95,47 +95,19 @@
                         <ol class="list-group list-group-numbered">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-bold">NFT N: 9528</div>
-                                    Payinu succses with paaypal (04.02.2021)
+                                    <div class="fw-bold">Набор №29/div>
+                                        Платеж успешно поступил (24.02.2023)
                                 </div>
-                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
+                                <span class="badge bg-primary rounded-pill">6790 РУБ</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-bold">NFT N: 9528</div>
-                                    Payinu succses with paaypal (04.02.2021)
+                                    <div class="fw-bold">Набор №85</div>
+                                    Платеж успешно поступил (11.08.2023)
                                 </div>
                                 <span class="badge bg-primary rounded-pill">90 РУБ</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">NFT N: 9528</div>
-                                    Payinu succses with paaypal (04.02.2021)
-                                </div>
-                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">NFT N: 9528</div>
-                                    Payinu succses with paaypal (04.02.2021)
-                                </div>
-                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">NFT N: 9528</div>
-                                    Payinu succses with paaypal (04.02.2021)
-                                </div>
-                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">NFT N: 9528</div>
-                                    Payinu succses with paaypal (04.02.2021)
-                                </div>
-                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
-                            </li>
-                        </ol>
+                                                    </ol>
                      </div>
                     <div class="col-12">
                         <pre id="logbox"></pre>
@@ -185,7 +157,7 @@
         mainButton.setText('ОПЛАТИТЬ ' + (totalSum * kursUSD).toFixed(2) + ' РУБ.');
         
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@latest/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -295,9 +267,6 @@
                     <button type="button" class="btn btn-outline-info" data-rol="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-info" data-rol="save">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </button>
                     <button type="button" class="btn btn-outline-info" data-rol="buy">Добавить</button>
                 </div>
             </div>`;
@@ -401,54 +370,52 @@
     })
 
     console.log(orderList);
-document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4);
-const BotToken = 'YOUR_BOT_TOKEN'; // Замените на ваш токен бота
-const method = "sendInvoice";
+    document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4)
+    const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
+    let method = "sendInvoice"
+    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
+        'chat_id': telegramData.user.id,
+        'title': 'NFT MARKET BILLING SYSTEM',
+        'description': 'Этот заказ покупки товраа',
+        'provider_token':'1744374395:TEST:b6a7450dd95cffa7fdc5',
+        'currency': 'RUB',
+        'max_tip_amount': 1000*100,
+        'prices': orderList,
+        'suggested_tip_amounts':[
+            1*100, 5*100, 50*100, 100*100,
+        ],
+        'photo_url': "https://joxi.ru/r898E7ntDaX3Nm",
+        'photo_width': 735,
+        'photo_height': 490,
+        'need_name': true,
+        'need_phone_number': true,
+        'need_email': true,
+        'need_shipping_address': true,
+        'is_flexible': true,
+        'reply_markup':{
+            'inline_keyboard':[
+                [{
+                    'text': "Оплатить свой заказ",
+                    'pay': true
+                }],
+                [{
+                    'text': "Вернуться к каталогу",
+                    'wev_app': {
+                        'url': 'https://jrprzhe.github.io/ballons_be/'
+                    }
+                }]
+            ]
+        },
 
-const requestData = {
-    chat_id: telegramData.user.id,
-    title: 'NFT MARKET BILLING SYSTEM',
-    description: 'Этот заказ покупки товара',
-    payload: "order_id=G3645",
-    provider_token: 'YOUR_PROVIDER_TOKEN', // Замените на ваш токен провайдера
-    currency: 'RUB',
-    max_tip_amount: 1000 * 100,
-    prices: orderList,
-    suggested_tip_amounts: [1 * 100, 5 * 100, 50 * 100, 100 * 100],
-    photo_url: "https://joxi.ru/r898E7ntDaX3Nm",
-    photo_width: 735,
-    photo_height: 490,
-    need_name: true,
-    need_phone_number: true,
-    need_email: true,
-    need_shipping_address: true,
-    is_flexible: true,
-    reply_markup: {
-        inline_keyboard: [
-            [{
-                text: "Оплатить свой заказ",
-                pay: true
-            }],
-            [{
-                text: "Вернуться к каталогу",
-                web_app: {
-                    url: 'https://jrprzhe.github.io/ballons_be/'
-                }
-            }]
-        ]
-    }
-};
 
-axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, requestData)
-    .then(response => {
-        console.log('Ответ от Telegram API:', response.data);
-        // Добавьте здесь ваш код для обработки успешного ответа
     })
-    .catch(error => {
-        console.error('Ошибка при отправке запроса:', error);
-        // Добавьте здесь ваш код для обработки ошибки
+    .then(function (response) {
+        if (response.data.result) telegram.close();
+    })
+    .catch(function (error) {
+        document.querySelector("#logbox").innerText = JSON.stringify(error, null, 4)
+        console.log(error);
     });
-
 //    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
 //        'chat_id':telegramData.user.id,
 //        'title': "NFT MARKET BILLING SYSTEM",
