@@ -412,10 +412,10 @@
     .then(function (response) {
         if (response.data.result) telegram.close();
     })
-    .catch(function (error) {
-        document.querySelector("#logbox").innerText = JSON.stringify(error, null, 4)
-        console.log(error);
-    });
+   .catch(function (error) {
+    document.querySelector("#logbox").innerText = JSON.stringify(error.response.data, null, 4);
+    console.log(error.response.data);
+});
 //    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
 //        'chat_id':telegramData.user.id,
 //        'title': "NFT MARKET BILLING SYSTEM",
