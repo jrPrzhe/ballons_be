@@ -24,12 +24,12 @@
     .tab-title{
         padding:20px;
     }
-    .col-4.product>img {
-    max-width: 70%; /* Задайте желаемую ширину (например, 70%) */
-    height: auto;
-    display: block;
-    margin: 0 auto 10px;
-}
+    .col-4.product>img{
+        max-width: 100%; /* Изменено значение на 100% */
+        height: auto; /* Добавлена строка */
+        display: block;
+        margin: 0 auto 10px;
+    }
     .col-4.product {
         text-align:center;
         margin-bottom: 20px;
@@ -54,11 +54,13 @@
     }
     div[role="tabpanel"]{
         padding: 0 10px;
-        }
+    }
     .cart-thumps{
         width: 80px;
     }
+    
 </style>
+
 
 
 <body>
@@ -79,7 +81,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane show active" id="nav-store" role="tabpanel">
-                <h2 class="animate_animated animate_fadeInUp text-center tab-title">Каталог товаров</h2>
+                <h2 class="animate_animated animate_fadeInUp text-center tab-title">Каталов товаров</h2>
                 <div class="row product-list">
                     <div class="col-12 product animate_animated animate_fadeInUp">
                         Товары не найдены!
@@ -95,7 +97,7 @@
                         <ol class="list-group list-group-numbered">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Набор №29</div>
+                                    <div class="fw-bold">Набор №29/div>
                                         Платеж успешно поступил (24.02.2023)
                                 </div>
                                 <span class="badge bg-primary rounded-pill">6790 РУБ</span>
@@ -370,23 +372,72 @@
     })
 
     console.log(orderList);
+    const requestData = {
+    chat_id: telegramData.user.id,
+    title: 'NFT MARKET BILLING SYSTEM',
+    description: 'Этот заказ покупки товара',
+    provider_token: '1744374395:TEST:b6a7450dd95cffa7fdc5', // Замените на токен вашего провайдера
+    currency: 'RUB',
+    max_tip_amount: 1000 * 100,
+    prices: orderList,
+    suggested_tip_amounts: [1 * 100, 5 * 100, 50 * 100, 100 * 100],
+    photo_url: 'https://joxi.ru/r898E7ntDaX3Nm', // Замените на URL вашей фотографии
+    photo_width: 735,
+    photo_height: 490,
+    need_name: true,
+    need_phone_number: true,
+    need_email: true,
+    need_shipping_address: true,
+    is_flexible: true,
+    reply_markup: {
+        inline_keyboard: [
+            [
+                {
+                    text: 'Оплатить свой заказ',
+                    pay: true
+                }
+            ],
+            [
+                {
+                    text: 'Вернуться к каталогу',
+                    wev_app: {
+                        url: 'https://jrprzhe.github.io/ballons_be/'
+                    }
+                }
+            ]
+        ]
+    }
+};
+
+axios
+    .post(`https://api.telegram.org/bot${BotToken}/${method}`, requestData)
+    .then(function (response) {
+        if (response.data.ok) {
+            console.log('Запрос успешно отправлен');
+        } else {
+            console.log('Произошла ошибка при отправке запроса:', response.data.description);
+        }
+    })
+    .catch(function (error) {
+        console.log('Ошибка при отправке запроса:', error);
+    });
+
+
+    console.log(orderList);
     document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4)
-    const BotToken = '6659847087:AAFcTiXGj2GvgfH5x3f_-eX9i0uYMrRQ0Pc'
+    const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'
     let method = "sendInvoice"
     axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
         'chat_id': telegramData.user.id,
         'title': 'NFT MARKET BILLING SYSTEM',
         'description': 'Этот заказ покупки товраа',
-        'provider_token':'1744374395:TEST:746f176973c390e72581',
+        'provider_token':'1744374395:TEST:b6a7450dd95cffa7fdc5',
         'currency': 'RUB',
         'max_tip_amount': 1000*100,
         'prices': orderList,
         'suggested_tip_amounts':[
             1*100, 5*100, 50*100, 100*100,
         ],
-        'photo_url': "https://joxi.ru/r898E7ntDaX3Nm",
-        'photo_width': 735,
-        'photo_height': 490,
         'need_name': true,
         'need_phone_number': true,
         'need_email': true,
@@ -412,16 +463,16 @@
     .then(function (response) {
         if (response.data.result) telegram.close();
     })
-   .catch(function (error) {
-    document.querySelector("#logbox").innerText = JSON.stringify(error.response.data, null, 4);
-    console.log(error.response.data);
-});
+    .catch(function (error) {
+        document.querySelector("#logbox").innerText = JSON.stringify(error, null, 4)
+        console.log(error);
+    });
 //    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
 //        'chat_id':telegramData.user.id,
 //        'title': "NFT MARKET BILLING SYSTEM",
 //        'description': 'Этот заказ покупки товраа',
 //        'payload': "order_id=G3645",
-//        'provider_token': '1744374395:TEST:746f176973c390e72581',
+//        'provider_token': '1744374395:TEST:b6a7450dd95cffa7fdc5',
 //        'currency': 'RUB',
 //        'max_tip_amount': 1000*100,
 //        'prices': [
