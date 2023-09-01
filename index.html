@@ -371,58 +371,8 @@
         })
     })
 
-    console.log(orderList);
-const BotToken = '    const BotToken = '5780220201:AAF0mJQiNwSuezZKcl3BtXiipSGgOmQSsIY'; // Замените на свой токен бота
-const method = 'sendInvoice';
-    const requestData = {
-    chat_id: telegramData.user.id,
-    title: 'NFT MARKET BILLING SYSTEM',
-    description: 'Этот заказ покупки товара',
-    provider_token: '1744374395:TEST:b6a7450dd95cffa7fdc5', // Замените на токен вашего провайдера
-    currency: 'RUB',
-    max_tip_amount: 1000 * 100,
-    prices: orderList,
-    suggested_tip_amounts: [1 * 100, 5 * 100, 50 * 100, 100 * 100],
-    photo_url: 'https://joxi.ru/r898E7ntDaX3Nm', // Замените на URL вашей фотографии
-    photo_width: 735,
-    photo_height: 490,
-    need_name: true,
-    need_phone_number: true,
-    need_email: true,
-    need_shipping_address: true,
-    is_flexible: true,
-    reply_markup: {
-        inline_keyboard: [
-            [
-                {
-                    text: 'Оплатить свой заказ',
-                    pay: true
-                }
-            ],
-            [
-                {
-                    text: 'Вернуться к каталогу',
-                    wev_app: {
-                        url: 'https://jrprzhe.github.io/ballons_be/'
-                    }
-                }
-            ]
-        ]
-    }
-};
 
-axios
-    .post(`https://api.telegram.org/bot${BotToken}/${method}`, requestData)
-    .then(function (response) {
-        if (response.data.ok) {
-            console.log('Запрос успешно отправлен');
-        } else {
-            console.log('Произошла ошибка при отправке запроса:', response.data.description);
-        }
-    })
-    .catch(function (error) {
-        console.log('Ошибка при отправке запроса:', error);
-    });
+    
 
 
     console.log(orderList);
